@@ -1,0 +1,27 @@
+{
+    "name": "marinar/periodable",
+    "description": "Periodable",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marin Ivanov",
+            "email": "marin@dev.nddesign.no"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Marinar\\Periodable\\": "src/"
+        }
+    },
+
+    "require": {
+    },
+    "extra": {
+        "marinar": {
+            "module": false,
+            "plugin": true,
+            "addon_to": false
+        }
+    }
+}
