@@ -3,11 +3,10 @@ namespace App\Http\Requests\Admin;
 
 class PeriodableRequest {
 
-    public static function validation_rules($lang_prefix = null, $periodable_bag = false) {
+    public static function validation_rules($lang_prefix = null, $periodable_bag = 'period') {
         $translations = trans('admin/periodable/validation');
         $langs = isset($lang_prefix)?
             transOrOther($lang_prefix, 'admin/periodable/validation', array_keys($translations)) : $translations;
-        $periodable_bag = $periodable_bag? $periodable_bag : 'period';
         return [
             $periodable_bag.'.start_at.date' => ['nullable',  function($attribute, $value, $fail) use ($langs) {
                 if(!($dt = \DateTime::createFromFormat('d.m.Y', $value))) {
@@ -46,8 +45,7 @@ class PeriodableRequest {
         ];
     }
 
-    public static function validateData(&$validatedData, $periodable_bag = false) {
-        $periodable_bag = $periodable_bag? $periodable_bag : 'period';
+    public static function validateData(&$validatedData, $periodable_bag = 'period') {
         $validatePeriodArr = $validatedData[$periodable_bag]['start_at'];
         $periodFrom = "{$validatePeriodArr['date']} {$validatePeriodArr['hour']}:{$validatePeriodArr['minutes']}";
         $validatePeriodArr = $validatedData['period']['end_at'];
